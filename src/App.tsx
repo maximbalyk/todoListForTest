@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-shadow */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, ChangeEvent, useState } from 'react';
 import './App.scss';
 import { v4 as uuidv4 } from 'uuid';
@@ -32,7 +30,7 @@ export const App: FC = () => {
   const addTask = () => {
     const newTask = {
       taskName: task,
-      isComplete: false,
+      isComplete,
       id: uuidv4(),
     };
 
@@ -40,6 +38,12 @@ export const App: FC = () => {
     setPrepareTodoList([...prepareTodoList, newTask]);
     setTask('');
     setIsComplete(false);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      addTask();
+    }
   };
 
   const deleteTask = (taskIdToDelete: string) => {
@@ -83,9 +87,11 @@ export const App: FC = () => {
 
   return (
     <div className="App">
-      <form onSubmit={e => {
-        e.preventDefault();
-      }}
+      <form
+        className="d-flex flex-column"
+        onSubmit={e => {
+          e.preventDefault();
+        }}
       >
         <div className="mb-3 row">
           <label htmlFor="exampleInputEmail1" className="form-label">Create task</label>
@@ -95,6 +101,7 @@ export const App: FC = () => {
               placeholder="Please enter task"
               name="task"
               value={task}
+              onKeyPress={(e) => handleKeyPress(e)}
               onChange={(event) => (
                 handleChange(event)
               )}
@@ -103,7 +110,7 @@ export const App: FC = () => {
             />
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-light"
               onClick={addTask}
             >
               Add Task
@@ -123,14 +130,14 @@ export const App: FC = () => {
           />
         </div>
         <div className="btn-group" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-primary" onClick={showAll}>Show All</button>
-          <button type="button" className="btn btn-primary" onClick={showInProgress}>In progress</button>
-          <button type="button" className="btn btn-primary" onClick={showDone}>Done task</button>
+          <button type="button" className="btn btn-dark" onClick={showAll}>Show All</button>
+          <button type="button" className="btn btn-dark" onClick={showInProgress}>In progress</button>
+          <button type="button" className="btn btn-dark" onClick={showDone}>Done task</button>
         </div>
       </form>
 
       <ul className="list-group">
-        {prepareTodoList.map((task: ITask, key: number) => {
+        {prepareTodoList.map((task: ITask) => {
           return (
             <li className="list-group-item" key={task.id}>
               <TodoTask

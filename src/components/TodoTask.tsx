@@ -14,26 +14,31 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
   return (
     <div className="task">
       <div className="content">
-        <span className={!task.isComplete ? 'btn-danger' : 'btn-success'}>{task.taskName}</span>
+        <img width="42px" src={!task.isComplete ? '../square.svg' : '../square_ok.svg'} alt="" />
+        <span className="btn-light">
+          {task.taskName}
+        </span>
       </div>
-      <button
-        className="btn btn-success btn-sm"
-        type="button"
-        onClick={() => {
-          completeTask(task.id);
-        }}
-      >
-        Complete Task
-      </button>
-      <button
-        className="btn btn-danger btn-sm"
-        type="button"
-        onClick={() => {
-          deleteTask(task.id);
-        }}
-      >
-        X
-      </button>
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <button
+          className="btn btn-dark btn-sm"
+          type="button"
+          onClick={() => {
+            completeTask(task.id);
+          }}
+        >
+          Complete Task
+        </button>
+        <button
+          className="btn btn-dark btn-sm"
+          type="button"
+          onClick={() => {
+            deleteTask(task.id);
+          }}
+        >
+          X
+        </button>
+      </div>
     </div>
   );
 };
