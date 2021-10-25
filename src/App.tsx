@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-shadow */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, ChangeEvent, useState } from 'react';
 import './App.scss';
@@ -12,54 +10,51 @@ import { ITask } from './Interfaces';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App: FC = () => {
-  const [task, setTask] = useState<string>('');
-  const [query, setQuery] = useState<string>('');
-  const [isComplete, setIsComplete] = useState<boolean>(false);
+  const [task, setTask] = useState('');
+  const [query, setQuery] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
   const [todoList, setTodoList] = useState<ITask[]>([]);
   const [prepareTodoList, setPrepareTodoList] = useState<ITask[]>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'task') {
       setTask(event.target.value);
     } else {
       setQuery(event.target.value);
-      console.log(query);
       setPrepareTodoList(todoList.filter((task) => {
-        console.log(query, 'inside');
-
-        return task.taskName.toLowerCase().includes(query.toLowerCase());
+        return task.taskName.toLowerCase().includes(
+          event.target.value.toLowerCase(),
+        );
       }));
     }
   };
 
-  const addTask = (): void => {
+  const addTask = () => {
     const newTask = {
       taskName: task,
       isComplete: false,
       id: uuidv4(),
     };
 
-    console.log(todoList);
     setTodoList([...todoList, newTask]);
-    console.log(todoList);
     setPrepareTodoList([...prepareTodoList, newTask]);
     setTask('');
     setIsComplete(false);
   };
 
-  const deleteTask = (taskNameToDelete: string):void => {
+  const deleteTask = (taskIdToDelete: string) => {
     setTodoList(todoList.filter((task) => {
-      return task.taskName !== taskNameToDelete;
+      return task.id !== taskIdToDelete;
     }));
 
     setPrepareTodoList(prepareTodoList.filter((task) => {
-      return task.taskName !== taskNameToDelete;
+      return task.id !== taskIdToDelete;
     }));
   };
 
-  const completeTask = (taskNameToComplete: string):void => {
+  const completeTask = (taskIdToComplete: string):void => {
     setTodoList(todoList.map((task) => {
-      if (task.taskName === taskNameToComplete) {
+      if (task.id === taskIdToComplete) {
         // eslint-disable-next-line no-param-reassign
         task.isComplete = !task.isComplete;
       }

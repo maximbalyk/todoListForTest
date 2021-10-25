@@ -20,7 +20,7 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
         className="btn btn-success btn-sm"
         type="button"
         onClick={() => {
-          completeTask(task.taskName);
+          completeTask(task.id);
         }}
       >
         Complete Task
@@ -29,7 +29,7 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
         className="btn btn-danger btn-sm"
         type="button"
         onClick={() => {
-          deleteTask(task.taskName);
+          deleteTask(task.id);
         }}
       >
         X
