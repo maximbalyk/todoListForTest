@@ -14,7 +14,11 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
   return (
     <div className="task">
       <div className="content">
-        <img width="42px" src={!task.isComplete ? './square.svg' : './square_ok.svg'} alt="" />
+        <img
+          width="42px"
+          src={!task.isComplete ? './square.svg' : './square_ok.svg'}
+          alt=""
+        />
         <span className="btn-light">
           {task.taskName}
         </span>

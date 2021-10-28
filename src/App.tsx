@@ -1,88 +1,74 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-shadow */
-import React, { FC, ChangeEvent, useState } from 'react';
-import './App.scss';
+import React, {
+  FC,
+  ChangeEvent,
+  useState,
+} from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import './App.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addTask,
+  removeTask,
+  completedTask,
+  showTaskInProgress,
+  showAllTask,
+  showDoneTask,
+  showQueryTask,
+} from './features/todoList/todoListSlicer';
 import TodoTask from './components/TodoTask';
-import { ITask } from './Interfaces';
+import { ITask, RootState } from './Interfaces';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App: FC = () => {
   const [task, setTask] = useState('');
   const [query, setQuery] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-  const [todoList, setTodoList] = useState<ITask[]>([]);
-  const [prepareTodoList, setPrepareTodoList] = useState<ITask[]>([]);
+  const prepareTodoList = useSelector((state: RootState) => state.todo.prepareList);
+  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'task') {
       setTask(event.target.value);
     } else {
       setQuery(event.target.value);
-      setPrepareTodoList(todoList.filter((task) => {
-        return task.taskName.toLowerCase().includes(
-          event.target.value.toLowerCase(),
-        );
-      }));
+      dispatch(showQueryTask(event.target.value));
     }
   };
 
-  const addTask = () => {
+  const addTodo = () => {
     const newTask = {
       taskName: task,
-      isComplete,
+      isComplete: false,
       id: uuidv4(),
     };
 
-    setTodoList([...todoList, newTask]);
-    setPrepareTodoList([...prepareTodoList, newTask]);
-    setTask('');
-    setIsComplete(false);
+    if (task.length !== 0) {
+      dispatch(addTask(newTask));
+      setTask('');
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      addTask();
+      addTodo();
     }
   };
 
-  const deleteTask = (taskIdToDelete: string) => {
-    setTodoList(todoList.filter((task) => {
-      return task.id !== taskIdToDelete;
-    }));
-
-    setPrepareTodoList(prepareTodoList.filter((task) => {
-      return task.id !== taskIdToDelete;
-    }));
+  const deleteTask = (taskIdToDelete: string) => dispatch(removeTask(taskIdToDelete));
+  const completeTask = (taskIdToComplete: string) => dispatch(completedTask(taskIdToComplete));
+  const showAll = () => {
+    setQuery('');
+    dispatch(showAllTask());
   };
 
-  const completeTask = (taskIdToComplete: string):void => {
-    setTodoList(todoList.map((task) => {
-      if (task.id === taskIdToComplete) {
-        // eslint-disable-next-line no-param-reassign
-        task.isComplete = !task.isComplete;
-      }
-
-      return task;
-    }));
+  const showInProgress = () => {
+    setQuery('');
+    dispatch(showTaskInProgress());
   };
 
-  const showAll = (): void => {
-    setPrepareTodoList(todoList.filter((task) => {
-      return task;
-    }));
-  };
-
-  const showInProgress = (): void => {
-    setPrepareTodoList(todoList.filter((task) => {
-      return task.isComplete === false;
-    }));
-  };
-
-  const showDone = (): void => {
-    setPrepareTodoList(todoList.filter((task) => {
-      return task.isComplete === true;
-    }));
+  const showDone = () => {
+    setQuery('');
+    dispatch(showDoneTask());
   };
 
   return (
@@ -111,7 +97,7 @@ export const App: FC = () => {
             <button
               type="button"
               className="btn btn-light"
-              onClick={addTask}
+              onClick={addTodo}
             >
               Add Task
             </button>
@@ -137,6 +123,7 @@ export const App: FC = () => {
       </form>
 
       <ul className="list-group">
+        {/* eslint-disable-next-line no-shadow */}
         {prepareTodoList.map((task: ITask) => {
           return (
             <li className="list-group-item" key={task.id}>
