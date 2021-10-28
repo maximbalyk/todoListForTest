@@ -81,27 +81,27 @@ export const App: FC = () => {
       >
         <div className="mb-3 row">
           <label htmlFor="exampleInputEmail1" className="form-label">Create task</label>
-          <div className="d-flex">
-            <input
-              type="text"
-              placeholder="Please enter task"
-              name="task"
-              value={task}
-              onKeyPress={(e) => handleKeyPress(e)}
-              onChange={(event) => (
-                handleChange(event)
-              )}
-              className="form-control"
-              id="exampleInputEmail1"
-            />
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={addTodo}
-            >
-              Add Task
-            </button>
-          </div>
+
+          <input
+            type="text"
+            placeholder="Please enter task"
+            name="task"
+            value={task}
+            onKeyPress={(e) => handleKeyPress(e)}
+            onChange={(event) => (
+              handleChange(event)
+            )}
+            className="form-control"
+            id="exampleInputEmail1"
+          />
+          <button
+            type="button"
+            className="btn btn-dark col-3"
+            onClick={addTodo}
+          >
+            Add Task
+          </button>
+
           <label htmlFor="exampleInputEmail2" className="form-label">Search task</label>
           <input
             type="text"

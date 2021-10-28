@@ -16,7 +16,7 @@ export const todoListSlice = createSlice({
   reducers: {
     addTask: (state: TodoListSlices, action) => {
       state.list.push(action.payload);
-      state.prepareList.push(action.payload);
+      state.prepareList = state.list;
     },
 
     removeTask: (state: TodoListSlices, action) => {
@@ -24,9 +24,7 @@ export const todoListSlice = createSlice({
         return task.id !== action.payload;
       });
 
-      state.prepareList = state.prepareList.filter((task: ITask) => {
-        return task.id !== action.payload;
-      });
+      state.prepareList = state.list;
     },
 
     completedTask: (state: TodoListSlices, action) => {
@@ -38,13 +36,7 @@ export const todoListSlice = createSlice({
         return task;
       });
 
-      state.prepareList = state.prepareList.map((task: ITask) => {
-        if (task.id === action.payload) {
-          task.isComplete = !task.isComplete;
-        }
-
-        return task;
-      });
+      state.prepareList = state.list;
     },
 
     showAllTask: (state: TodoListSlices) => {
