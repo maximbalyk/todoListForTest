@@ -60,7 +60,7 @@ export const todoListSlice = createSlice({
     },
 
     showQueryTask: (state: TodoListSlices, action) => {
-      state.prepareList = state.prepareList.filter((task: ITask) => {
+      state.prepareList = state.list.filter((task: ITask) => {
         return task.taskName.toLowerCase().includes(
           action.payload.toLowerCase(),
         );
