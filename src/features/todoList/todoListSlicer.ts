@@ -47,10 +47,6 @@ export const todoListSlice = createSlice({
       state.prepareList = state.list.filter((task: ITask) => task.isComplete === true);
     },
 
-    showTaskInProgress: (state: TodoListSlices) => {
-      state.prepareList = state.list.filter((task: ITask) => task.isComplete === false);
-    },
-
     showQueryTask: (state: TodoListSlices, action) => {
       state.prepareList = state.list.filter((task: ITask) => {
         return task.taskName.toLowerCase().includes(
@@ -66,7 +62,6 @@ export const {
   addTask,
   removeTask,
   completedTask,
-  showTaskInProgress,
   showAllTask,
   showDoneTask,
   showQueryTask,
