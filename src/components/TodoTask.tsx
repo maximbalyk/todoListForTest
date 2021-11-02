@@ -47,7 +47,7 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
           deleteTask(task.id);
         }}
       >
-        Delete taska
+        Delete task
       </button>
     </div>
   );
