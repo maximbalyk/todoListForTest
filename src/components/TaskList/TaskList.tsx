@@ -27,6 +27,9 @@ const TaskList: React.FC<TaskListProps> = ({
         <button type="button" className="btn btn-dark" onClick={showDone}>Done task</button>
       </div>
 
+      {!currentList.length
+        ? <div className="alert alert-dark">You have no task</div>
+        : null}
       <ul className="list-group">
         {/* eslint-disable-next-line no-shadow */}
         {currentList.map((task: ITask) => {
