@@ -15,6 +15,7 @@ const SearchTask: React.FC<SearchTaskProps> = ({
     <>
       <label htmlFor="exampleInputEmail2" className="form-label">Search task</label>
       <input
+        style={{ width: 700 }}
         type="text"
         placeholder="Enter key word"
         name="item"

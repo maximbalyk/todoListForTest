@@ -13,14 +13,22 @@ body {
 }
 
 .task {
-  width: 500px;
+  width: 700px;
+  box-sizing: border-box;
+  padding: 0;
   height: 50px;
   display:flex;
-  box-sizing: content-box;
   color: white;
 }
 
+.buttonIcon{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
 .task .content {
+
   flex: 80%;
   height: 100%;
   display: flex;
@@ -29,6 +37,7 @@ body {
 }
 
 .task .content span {
+
   display: grid;
   place-items: center;
   border: 1px solid white;
