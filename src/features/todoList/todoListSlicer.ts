@@ -40,7 +40,7 @@ export const todoListSlice = createSlice({
     },
 
     showAllTask: (state: TodoListSlices) => {
-      state.prepareList = state.list.filter((task: ITask) => task);
+      state.prepareList = state.list;
     },
 
     showDoneTask: (state: TodoListSlices) => {

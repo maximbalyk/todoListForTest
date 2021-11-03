@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/quotes */
-import React from "react";
-import { ITask } from "../Interfaces";
+import React from 'react';
+import { ITask } from '../../Interfaces';
 
 interface Props {
   task: ITask;

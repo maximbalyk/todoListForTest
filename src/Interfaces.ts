@@ -12,3 +12,12 @@ export interface TodoListSlices {
 export interface RootState {
   todo: TodoListSlices;
 }
+
+export interface TaskListProps {
+  currentList: ITask[];
+  showDone: () => void;
+  showInProgress: () => void;
+  showAll: () => void;
+  deleteTask(taskNameToDelete:string): void;
+  completeTask(taskNameToComplete:string): void;
+}

@@ -1,15 +1,6 @@
 import React from 'react';
-import { ITask } from '../../Interfaces';
-import TodoTask from '../TodoTask';
-
-interface TaskListProps {
-  currentList: ITask[];
-  showDone: () => void;
-  showInProgress: () => void;
-  showAll: () => void;
-  deleteTask(taskNameToDelete:string): void;
-  completeTask(taskNameToComplete:string): void;
-}
+import { ITask, TaskListProps } from '../../Interfaces';
+import TodoTask from '../TodoTask/TodoTask';
 
 const TaskList: React.FC<TaskListProps> = ({
   currentList,
