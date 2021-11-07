@@ -24,7 +24,7 @@ const CreateTask: React.FC<CreateTaskProps> = ({
         e.preventDefault();
       }}
     >
-      <div className="mb-3 row">
+      <div>
         <label htmlFor="exampleInputEmail1" className="form-label">Create task</label>
 
         <input
@@ -36,12 +36,12 @@ const CreateTask: React.FC<CreateTaskProps> = ({
           onChange={(event) => (
             handleChange(event)
           )}
-          className="form-control"
+          className="form-control mb-2"
           id="exampleInputEmail1"
         />
         <button
           type="button"
-          className="btn btn-dark col-3"
+          className="btn btn-outline-dark col-3"
           onClick={addTodo}
         >
           Add Task

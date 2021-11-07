@@ -10,7 +10,7 @@ interface Props {
 const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
   return (
     <div className="task">
-      <div className="content">
+      <div className="content btn-light">
         <button
           className="buttonIcon"
           type="button"
@@ -29,7 +29,7 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
         </span>
       </div>
       <button
-        className="btn btn-dark btn-sm"
+        className="btn btn-outline-dark btn-sm mr-1"
         type="button"
         onClick={() => {
           completeTask(task.id);
@@ -38,7 +38,7 @@ const TodoTask = ({ task, deleteTask, completeTask }: Props) => {
         Complete Task
       </button>
       <button
-        className="btn btn-danger btn-sm"
+        className="btn btn-outline-danger btn-sm"
         type="button"
         onClick={() => {
           deleteTask(task.id);

@@ -12,20 +12,20 @@ const TaskList: React.FC<TaskListProps> = ({
 }) => {
   return (
     <>
-      <div className="btn-group" role="group" aria-label="Basic example">
-        <button type="button" className="btn btn-dark" onClick={showAll}>Show All</button>
-        <button type="button" className="btn btn-dark" onClick={showInProgress}>In progress</button>
-        <button type="button" className="btn btn-dark" onClick={showDone}>Done task</button>
+      <div className="btn-group mb-3" role="group" aria-label="Basic example">
+        <button type="button" className="btn btn-outline-dark" onClick={showAll}>Show All</button>
+        <button type="button" className="btn btn-outline-dark" onClick={showInProgress}>In progress</button>
+        <button type="button" className="btn btn-outline-dark" onClick={showDone}>Done task</button>
       </div>
 
       {!currentList.length
-        ? <div className="alert alert-dark">You have no task</div>
+        ? <div className="alert alert-dark w-100 text-center">You have no task</div>
         : null}
       <ul className="list-group">
         {/* eslint-disable-next-line no-shadow */}
         {currentList.map((task: ITask) => {
           return (
-            <li className="list-group-item" key={task.id}>
+            <li className="list-group-item p-0" key={task.id}>
               <TodoTask
                 task={task}
                 deleteTask={deleteTask}

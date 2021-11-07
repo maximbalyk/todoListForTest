@@ -23,7 +23,7 @@ const SearchTask: React.FC<SearchTaskProps> = ({
         onChange={(event) => (
           handleChange(event)
         )}
-        className="form-control"
+        className="form-control mb-2"
         id="exampleInputEmail2"
       />
     </>
