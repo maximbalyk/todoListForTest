@@ -25,7 +25,7 @@ export const App: FC = () => {
   } = useApp();
 
   return (
-    <div style={{ maxWidth: 700, margin: '0 auto' }} className="App d-flex align-items-start">
+    <div className="App d-flex align-items-start">
       <CreateTask
         task={task}
         handleKeyPress={handleKeyPress}

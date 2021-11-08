@@ -21,11 +21,11 @@ const TaskList: React.FC<TaskListProps> = ({
       {!currentList.length
         ? <div className="alert alert-dark w-100 text-center">You have no task</div>
         : null}
-      <ul className="list-group">
+      <ul className="list-group w-100">
         {/* eslint-disable-next-line no-shadow */}
         {currentList.map((task: ITask) => {
           return (
-            <li className="list-group-item p-0" key={task.id}>
+            <li className="list-group-item p-0 " key={task.id}>
               <TodoTask
                 task={task}
                 deleteTask={deleteTask}
